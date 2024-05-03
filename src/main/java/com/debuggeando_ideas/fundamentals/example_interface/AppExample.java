@@ -1,4 +1,4 @@
-package com.debuggeando_ideas.fundamentals.example;
+package com.debuggeando_ideas.fundamentals.example_interface;
 
 public class AppExample {
 
