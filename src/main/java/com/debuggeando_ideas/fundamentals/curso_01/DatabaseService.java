@@ -1,4 +1,4 @@
-package com.debuggeando_ideas.fundamentals;
+package com.debuggeando_ideas.fundamentals.curso_01;
 
 import java.util.List;
 
