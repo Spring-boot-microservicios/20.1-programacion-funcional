@@ -1,4 +1,4 @@
-package com.debuggeando_ideas.lambdas;
+package com.debuggeando_ideas.lambdas.curso_02;
 
 @FunctionalInterface
 public interface Math {
