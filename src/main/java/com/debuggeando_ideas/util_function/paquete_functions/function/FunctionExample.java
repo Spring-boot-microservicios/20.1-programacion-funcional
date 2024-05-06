@@ -1,4 +1,4 @@
-package com.debuggeando_ideas.util_function.paquete_functions;
+package com.debuggeando_ideas.util_function.paquete_functions.function;
 
 import java.util.function.Function;
 
