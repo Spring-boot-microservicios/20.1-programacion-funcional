@@ -1,10 +1,9 @@
-package com.debuggeando_ideas.reference_methods;
+package com.debuggeando_ideas.reference_methods.curso_03;
 
 import lombok.ToString;
 
 import java.util.Random;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 @ToString
 public class MyObject {
