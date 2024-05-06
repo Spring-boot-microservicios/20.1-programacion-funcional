@@ -1,4 +1,4 @@
-package com.debuggeando_ideas.util_function;
+package com.debuggeando_ideas.util_function.curso_04;
 
 import lombok.ToString;
 
