@@ -1,4 +1,4 @@
-package com.debuggeando_ideas.streams;
+package com.debuggeando_ideas.streams.curso_06;
 
 import com.debuggeando_ideas.util.Database;
 import com.debuggeando_ideas.util.Videogame;
