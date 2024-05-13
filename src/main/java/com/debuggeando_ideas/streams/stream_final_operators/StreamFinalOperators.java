@@ -56,6 +56,17 @@ public class StreamFinalOperators {
         System.out.println("reduceOperator: " + total.get());
     }
 
+    private static void maxOperator(Stream<Videogame> stream) {
+        // Comparamos los nombres y nos regresa alfabeticamente el nombre
+        Optional<Videogame> videogame = stream.max((a, b) -> a.getName().compareTo(b.getName()));
+        System.out.println("maxOperator: " + videogame.get().getName());
+    }
+
+    private static void minOperator(Stream<Videogame> stream) {
+        Optional<Videogame> videogame = stream.min((a, b) -> a.getName().compareTo(b.getName()));
+        System.out.println("minOperator: " + videogame.get().getName());
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -73,6 +84,9 @@ public class StreamFinalOperators {
         // Acumulador
         // reduceOperator(videogames); // Acumulando el total de vendidos con descuento
 
+        // Max - Min
+        // maxOperator(videogames); // muestra el mas grande en este caso T..
+        // minOperator(videogames); // muestra el primero alfabeticamte A..
     }
 
 }
