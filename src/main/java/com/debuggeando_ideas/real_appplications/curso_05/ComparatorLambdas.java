@@ -1,11 +1,7 @@
-package com.debuggeando_ideas.real_appplications;
+package com.debuggeando_ideas.real_appplications.curso_05;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
 
 public class ComparatorLambdas {
 
