@@ -46,6 +46,16 @@ public class StreamFinalOperators {
         System.out.println("findAnyOperator: " + videogame);
     }
 
+    private static void reduceOperator(Stream<Videogame> stream) {
+        Optional<Integer> total = stream
+                .filter(Videogame::getIsDiscount)
+                .map(Videogame::getTotalSold)
+                .reduce(Integer::sum);
+                // .reduce((a, b) -> a + b);
+
+        System.out.println("reduceOperator: " + total.get());
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -59,6 +69,9 @@ public class StreamFinalOperators {
 
         // findFirstOperator(videogames); // Obtiene el primer elemento y requiere de un Optional
         // findAnyOperator(videogames); // Regresa cualquier elemento pero casi siempre es el primero
+
+        // Acumulador
+        // reduceOperator(videogames); // Acumulando el total de vendidos con descuento
 
     }
 
