@@ -71,6 +71,13 @@ public class StreamIntermediateOperators {
 
     }
 
+    private static void peekOperator(Stream<Videogame> stream) {
+        // stream.peek(System.out::println).collect(Collectors.toList()); imprime como un forEach porque termina con un operador final
+
+        // El peek no se ejecuta hasta que llame un operador en consecutivo
+        stream.peek(videogame -> videogame.setName("")).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -85,7 +92,9 @@ public class StreamIntermediateOperators {
 
         // flatMapOperator(videogames); // Aplana una lista de listas [ [..], [..] ] a [.., ..]
 
-        mapVsFlatMapOperator(videogames);
+        // mapVsFlatMapOperator(videogames);
+
+        peekOperator(videogames); // Es un tipo forEach, pero le falta un operador final para que se llame
 
     }
 
