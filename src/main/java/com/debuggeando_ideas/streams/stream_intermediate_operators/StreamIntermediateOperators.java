@@ -62,6 +62,15 @@ public class StreamIntermediateOperators {
         System.out.println("Lista aplanada" + videogames);
     }
 
+    private static void mapVsFlatMapOperator(Stream<Videogame> stream) {
+        // List<Integer> totalReviews = stream.map(videogame -> videogame.getReviews().size()).collect(Collectors.toList());
+        // System.out.println("Total reviews: " + totalReviews.size()); // 20 -> es incorrecto
+
+        Long totalReviews = stream.flatMap(videogame -> videogame.getReviews().stream()).count();
+        System.out.println("Total reviews flapMap: " + totalReviews); // 48 reviews -> son las correctas
+
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -74,7 +83,10 @@ public class StreamIntermediateOperators {
 
         // mapOperator(videogames); // Transforma un objeto a otro tipo
 
-        flatMapOperator(videogames); // Aplana una lista de listas [ [..], [..] ] a [.., ..]
+        // flatMapOperator(videogames); // Aplana una lista de listas [ [..], [..] ] a [.., ..]
+
+        mapVsFlatMapOperator(videogames);
+
     }
 
 }
