@@ -2,6 +2,7 @@ package com.debuggeando_ideas.streams.stream_intermediate_operators;
 
 import com.debuggeando_ideas.util.BasicVideogame;
 import com.debuggeando_ideas.util.Database;
+import com.debuggeando_ideas.util.Review;
 import com.debuggeando_ideas.util.Videogame;
 
 import java.util.List;
@@ -53,6 +54,14 @@ public class StreamIntermediateOperators {
         titles.forEach(System.out::println);
     }
 
+    private static void flatMapOperator(Stream<Videogame> stream) {
+        // List<List<Review>> videogames = stream.map(Videogame::getReviews).collect(Collectors.toList());
+        // System.out.println("Lista de listas" + videogames);
+
+        List<Review> videogames = stream.flatMap(videogame -> videogame.getReviews().stream()).collect(Collectors.toList());
+        System.out.println("Lista aplanada" + videogames);
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -63,8 +72,9 @@ public class StreamIntermediateOperators {
 
         // filterOperator(videogames); // Realiza un filtrado por x condicion que necesitemos
 
-        mapOperator(videogames); // Transforma un objeto a otro tipo
+        // mapOperator(videogames); // Transforma un objeto a otro tipo
 
+        flatMapOperator(videogames); // Aplana una lista de listas [ [..], [..] ] a [.., ..]
     }
 
 }
