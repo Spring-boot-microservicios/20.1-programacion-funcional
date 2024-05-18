@@ -89,6 +89,24 @@ public class StreamIntermediateOperators {
         videogamesSorted.forEach(System.out::println);
     }
 
+    private static void takeWhileOperator(Stream<Videogame> stream) {
+        List<Videogame> videogames = stream
+                .sorted(Comparator.comparing(Videogame::getName)) // Ordenado alfabeticamente A a Z
+                .takeWhile(videogame -> !videogame.getName().startsWith("M")) // Se cumple antes de que se cumpla el sorted
+                .collect(Collectors.toList());
+
+        videogames.forEach(System.out::println);
+    }
+
+    private static void dropWhileOperator(Stream<Videogame> stream) {
+        List<Videogame> videogames = stream
+                .sorted(Comparator.comparing(Videogame::getName)) // Ordenado alfabeticamente A a Z
+                .dropWhile(videogame -> !videogame.getName().startsWith("M")) // Elimina todos exceptos los que no cumplan con la condicion
+                .collect(Collectors.toList());
+
+        videogames.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -107,7 +125,10 @@ public class StreamIntermediateOperators {
 
         // peekOperator(videogames); // Es un tipo forEach, pero le falta un operador final para que se llame
 
-        sortOperator(videogames); // Lista ordenada
+        // sortOperator(videogames); // Lista ordenada
+
+        // takeWhileOperator(videogames); // Antes de que se realice un operador
+        dropWhileOperator(videogames); // Elimina antes de que realice un operador sorted
 
     }
 
