@@ -13,7 +13,11 @@ public class ExerciseLambdasSolution {
 
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
-        exercise5(videogames).forEach(System.out::println);
+//        System.out.println(exercise1(videogames));
+//        exercise2(videogames).forEach(System.out::println);
+//        System.out.println("Mayor numero de ventas: " + exercise3(videogames));
+//        exercise4(videogames).forEach(System.out::println);
+//        exercise5(videogames).forEach(System.out::println);
     }
 
     /*
