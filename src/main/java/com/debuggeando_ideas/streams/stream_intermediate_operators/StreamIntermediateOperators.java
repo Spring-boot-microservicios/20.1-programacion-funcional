@@ -5,6 +5,7 @@ import com.debuggeando_ideas.util.Database;
 import com.debuggeando_ideas.util.Review;
 import com.debuggeando_ideas.util.Videogame;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -78,6 +79,16 @@ public class StreamIntermediateOperators {
         stream.peek(videogame -> videogame.setName("")).forEach(System.out::println);
     }
 
+    private static void sortOperator(Stream<Videogame> stream) {
+        // Order de menor a mayor las reviews
+        List<Videogame> videogamesSorted = stream
+                .sorted(Comparator.comparingInt(v -> v.getReviews().size()))
+                .collect(Collectors.toList());
+
+        // System.out.println("Lista ordenada: " + videogamesSorted);
+        videogamesSorted.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -94,7 +105,9 @@ public class StreamIntermediateOperators {
 
         // mapVsFlatMapOperator(videogames);
 
-        peekOperator(videogames); // Es un tipo forEach, pero le falta un operador final para que se llame
+        // peekOperator(videogames); // Es un tipo forEach, pero le falta un operador final para que se llame
+
+        sortOperator(videogames); // Lista ordenada
 
     }
 
