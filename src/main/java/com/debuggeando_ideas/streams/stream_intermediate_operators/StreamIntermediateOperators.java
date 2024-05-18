@@ -1,5 +1,6 @@
 package com.debuggeando_ideas.streams.stream_intermediate_operators;
 
+import com.debuggeando_ideas.util.BasicVideogame;
 import com.debuggeando_ideas.util.Database;
 import com.debuggeando_ideas.util.Videogame;
 
@@ -33,6 +34,25 @@ public class StreamIntermediateOperators {
         videogames.forEach(System.out::println);
     }
 
+    private static void mapOperator(Stream<Videogame> stream) {
+
+        List<BasicVideogame> basicVideogames = stream
+                .map(videogame -> {
+                    return BasicVideogame.builder()
+                            .name(videogame.getName())
+                            .price(videogame.getPrice())
+                            .console(videogame.getConsole())
+                            .build();
+                }).collect(Collectors.toList());
+
+        basicVideogames.forEach(System.out::println);
+
+        // Stream<BasicVideogame> streamBasicVideogames = basicVideogames.stream();
+
+        List<String> titles = basicVideogames.stream().map(BasicVideogame::getName).collect(Collectors.toList());
+        titles.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
@@ -41,7 +61,10 @@ public class StreamIntermediateOperators {
         // limitOperator(videogames); // Trae los primeros 5 elementos
         // skipOperator(videogames); // Trae los ultimos 5 elementos de los 20 que tenemos, y parte apartir del 15
 
-        filterOperator(videogames); // Realiza un filtrado por x condicion que necesitemos
+        // filterOperator(videogames); // Realiza un filtrado por x condicion que necesitemos
+
+        mapOperator(videogames); // Transforma un objeto a otro tipo
+
     }
 
 }
