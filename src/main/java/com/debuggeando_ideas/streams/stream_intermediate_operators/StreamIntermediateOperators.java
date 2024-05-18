@@ -23,14 +23,25 @@ public class StreamIntermediateOperators {
         videogames.forEach(System.out::println);
     }
 
+    private static void filterOperator(Stream<Videogame> stream) {
+        List<Videogame> videogames = stream
+                .filter(videogame -> videogame.getPrice() > 12.0)
+                .filter(videogame -> !videogame.getIsDiscount())
+                .filter(videogame -> videogame.getOfficialWebsite().contains("forza"))
+                .collect(Collectors.toList());
+
+        videogames.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
         // System.out.println("Total elements: " + videogames.count()); // 20 elementos
         // distinctOperator(videogames); // 19 elementos -> Quita los repetidos
         // limitOperator(videogames); // Trae los primeros 5 elementos
-        skipOperator(videogames); // Trae los ultimos 5 elementos de los 20 que tenemos, y parte apartir del 15
+        // skipOperator(videogames); // Trae los ultimos 5 elementos de los 20 que tenemos, y parte apartir del 15
 
+        filterOperator(videogames); // Realiza un filtrado por x condicion que necesitemos
     }
 
 }
