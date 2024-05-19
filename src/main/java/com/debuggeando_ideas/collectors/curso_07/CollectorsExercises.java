@@ -7,6 +7,7 @@ import com.debuggeando_ideas.util.Videogame;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CollectorsExercises {
@@ -14,14 +15,18 @@ public class CollectorsExercises {
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
-        getConsolesPricesAvg(videogames).forEach((k, v) -> System.out.println(k + " - " + v));
+        getReviews(videogames).forEach(System.out::println);
+
+        // getConsolesPricesAvg(videogames).forEach((k, v) -> System.out.println(k + " - " + v));
     }
 
     /*
      *Regresar una lista inmutable con todos los reviews del stream.
      */
     static List<Review> getReviews(Stream<Videogame> stream) {
-        return null;
+        return stream
+                .flatMap(videogame -> videogame.getReviews().stream())
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /*
