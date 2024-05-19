@@ -5,6 +5,7 @@ import com.debuggeando_ideas.util.Review;
 import com.debuggeando_ideas.util.Videogame;
 
 import java.util.Comparator;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class App {
@@ -29,7 +30,7 @@ public class App {
                     )
             ).filter(comment -> comment.contains("best"))
             .map("Good comment: "::concat)
-            .toArray();
+            .collect(Collectors.toList());
 
         System.out.println("myArray: " + myArray);
 
