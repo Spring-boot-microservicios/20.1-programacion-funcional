@@ -5,6 +5,7 @@ import com.debuggeando_ideas.util.Database;
 import com.debuggeando_ideas.util.Review;
 import com.debuggeando_ideas.util.Videogame;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,9 +16,9 @@ public class CollectorsExercises {
     public static void main(String[] args) {
         Stream<Videogame> videogames = Database.videogames.stream();
 
-        getReviews(videogames).forEach(System.out::println);
-
-        // getConsolesPricesAvg(videogames).forEach((k, v) -> System.out.println(k + " - " + v));
+        // getReviews(videogames).forEach(System.out::println);
+        // getWebSites(videogames).forEach((k, v) -> System.out.println(k + " - " + v));
+         getConsolesPricesAvg(videogames).forEach((k, v) -> System.out.println(k + " - " + v));
     }
 
     /*
@@ -34,7 +35,7 @@ public class CollectorsExercises {
      *  de lo contrario regresar false con una lista de los videojuegos que no cumplan la condition.
      */
     static Map<Boolean, List<Videogame>> getWebSites(Stream<Videogame> stream) {
-        return null;
+        return stream.collect(Collectors.groupingBy(videogame -> videogame.getOfficialWebsite().length() < 15));
     }
 
     /*
@@ -42,6 +43,9 @@ public class CollectorsExercises {
      *  la clave del mapa será la consola y el valor el promedio de ventas.
      */
     static Map<Console, Double> getConsolesPricesAvg(Stream<Videogame> stream) {
-        return null;
+        return stream.collect(Collectors.groupingBy(
+            Videogame::getConsole,
+            Collectors.averagingDouble(Videogame::getTotalSold)
+        ));
     }
 }
