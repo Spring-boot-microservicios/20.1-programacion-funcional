@@ -15,9 +15,9 @@ public class ValidatorApp {
         var videogame3 = Database.videogames.get(3);
         var videogame4 = Database.videogames.get(4);
 
-        isValidVideogame(videogame4);
+        // isValidVideogame(videogame4);
 
-//        Validator.applyRules(Rules.rules, videogame1);
+        Validator.applyRules(Rules.rules, videogame1); // Resolvemos la compliejidad ciclomatica
         System.out.println("Valid videogame");
     }
 
