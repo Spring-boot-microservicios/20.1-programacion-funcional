@@ -19,6 +19,14 @@ public class AppLambdaGenerica {
         Printer<EmployeeGenerico> printerEmployee = employee -> System.out.println(employee);
         printerEmployee.print(new EmployeeGenerico(UUID.randomUUID().toString(), "Luisito", 240000.00));
 
+        // JDK 14+
+//        var result = switch("TRES") {
+//            case "UNO" -> 1;
+//            case "DOS" -> 2;
+//            case "TRES" -> 3;
+//            default -> 0;
+//        };
+
     }
 
 }
