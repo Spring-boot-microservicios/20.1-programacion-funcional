@@ -18,15 +18,70 @@ class CodeImpl {
         return n -> !(n % 2 == 0); // es par
     }
 
-    //Es un numero primo?
+    //Es un numero primo
     public static PerformOperation isPrime() {
-        return n -> ((n / n == 1) && (n / 1 == n) && !(n % 2 == 0)) || n == 2;
+//         return n -> (!(n == 1) && (n / n == 1) && (n / 1 == n) && !(n % 2 == 0)) || n == 2;
+
+        // Curso
+//        return n -> {
+//            int divider = 1;
+//            int count = 0;
+//
+//            while (divider <= n) {
+//                if (n % divider == 0) count++;
+//                if (count > 2) break;
+//                divider++;
+//            }
+//
+//            return count == 2;
+//        };
+
+        // Eficiente
+        return n -> {
+            if (n <= 1) return false;
+            if (n == 2 || n == 3) return true;
+            if (n % 2 == 0 || n % 3 == 0) return false;
+            int sqrt = (int) Math.sqrt(n);
+            for (int i = 5; i <= sqrt; i += 6) {
+                if (n % i == 0 || n % (i + 2) == 0) return false;
+            }
+            return true;
+        };
+
     }
 
     //Es un numero palindromo? 98589
     public static PerformOperation isPalindrome() {
 //        return n -> (n == Integer.parseInt(new StringBuilder(String.valueOf(n)).reverse().toString()));
-        return n -> (n == revertNumber(n));
+//        return n -> (n == revertNumber(n));
+
+        // Curso
+//        return n -> {
+//            String numString = Integer.toString(n);
+//            char[] chars = numString.toCharArray();
+//            int charsLength = chars.length;
+//
+//            for (int i = 0, reverse = charsLength - 1; i < charsLength; i++, reverse--) {
+//                if (chars[i] != chars[reverse]) return false;
+//            }
+//
+//            return true;
+//        };
+
+        // Eficiente
+        return n -> {
+            if (n < 0) return false;  // Los números negativos no son palíndromos
+            int original = n;
+            int reversed = 0;
+
+            while (n != 0) {
+                int digit = n % 10;
+                reversed = reversed * 10 + digit;
+                n /= 10;
+            }
+
+            return original == reversed;
+        };
     }
 
     private static Integer revertNumber(Integer number) {
@@ -66,7 +121,7 @@ public class CodeChallenge {
               () -> assertTrue(isPrime.check(isPrimeCases[2])),
               () -> assertFalse(isPrime.check(isPrimeCases[3])),
               () -> assertFalse(isPrime.check(isPrimeCases[4])),
-              () -> assertTrue(isPrime.check(isPrimeCases[5]))
+              () -> assertFalse(isPrime.check(isPrimeCases[5]))
        );
 
        assertAll( "Test isPalindrome" ,
